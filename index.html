@@ -97,15 +97,20 @@
       position: absolute; inset: 0;
       background: radial-gradient(circle at 60% 40%, rgba(232,196,176,0.15) 0%, transparent 55%), var(--green-dk);
     }
-    .hero-ornament { position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
+    .hero-ornament {
+      position: absolute; z-index: 2;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    }
     .hero-ring {
-      width: 320px; height: 320px; border: 1px solid rgba(232,196,176,0.2); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; position: relative;
+      width: 300px; height: 300px; border: 1px solid rgba(232,196,176,0.2); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0;
     }
     .hero-ring::before { content: ''; position: absolute; inset: 20px; border: 1px solid rgba(181,96,58,0.2); border-radius: 50%; }
     .hero-ring-text { font-family: var(--font-display); font-size: 1.05rem; font-weight: 300; font-style: italic; color: var(--blush); text-align: center; line-height: 1.6; padding: 2rem; }
     .hero-ring-text strong { display: block; font-family: var(--font-display); font-size: 2.8rem; font-weight: 300; font-style: normal; color: var(--cream); margin-bottom: 0.3rem; }
-    .hero-stats { position: absolute; bottom: 3rem; left: 3rem; z-index: 3; display: flex; gap: 2rem; }
+    .hero-stats { display: flex; gap: 3rem; z-index: 3; }
+    .hero-stats-mobile { display: none; margin-top: 2rem; gap: 2rem; }
     .hero-stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--cream); display: block; }
     .hero-stat-label { font-size: 0.62rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,246,241,0.5); }
 
@@ -203,16 +208,6 @@
     .step-body { font-size: 0.78rem; font-weight: 300; line-height: 1.6; color: #6a7d72; }
 
     /* FINAL CTA */
-    .final-cta { background: var(--terra); text-align: center; padding: 7rem 0; }
-    .final-cta .section-label { color: rgba(250,246,241,0.6); }
-    .final-cta-title { font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 300; color: var(--cream); line-height: 1.2; margin-bottom: 1.5rem; }
-    .final-cta-body { font-size: 1rem; font-weight: 300; line-height: 1.8; color: rgba(250,246,241,0.75); max-width: 48ch; margin: 0 auto 3rem; }
-    .final-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-white { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; background: var(--cream); color: var(--terra); padding: 1rem 2.5rem; border-radius: 2rem; transition: background 0.2s; display: inline-block; }
-    .btn-white:hover { background: #f0e9e0; }
-    .btn-outline-white { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(250,246,241,0.4); color: var(--cream); padding: 1rem 2.5rem; border-radius: 2rem; transition: border-color 0.2s; display: inline-block; }
-    .btn-outline-white:hover { border-color: var(--cream); }
-
     /* FOOTER */
     footer { background: var(--green-dk); padding: 3rem 0; }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
@@ -224,8 +219,10 @@
     @media (max-width: 960px) {
       nav { padding: 1rem 1.5rem; }
       .hero { grid-template-columns: 1fr; }
-      .hero-right { min-height: 320px; }
-      .hero-left { padding: 8rem 2rem 4rem; }
+      .hero-right { min-height: 360px; }
+      .hero-left { padding: 8rem 2rem 3rem; }
+      .hero-stats { display: none; }
+      .hero-stats-mobile { display: flex; }
       .who-inner, .founding-inner { grid-template-columns: 1fr; gap: 3rem; }
       .benefits-grid { grid-template-columns: 1fr; }
       .standards-grid { grid-template-columns: 1fr; }
@@ -258,7 +255,16 @@
       <p class="hero-sub">A private membership for Black women seeking a consistent, safe, and intentional space to rest, connect, and prioritize their wellness.</p>
       <div class="hero-actions">
         <a href="#apply-form" class="btn-primary">Apply for Membership</a>
-        <a href="#apply-form" class="btn-ghost">Join the Waitlist</a>
+      </div>
+      <div class="hero-stats-mobile">
+        <div class="hero-stat">
+          <span class="hero-stat-num">$80</span>
+          <span class="hero-stat-label">per month</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">Up to $300</span>
+          <span class="hero-stat-label">in monthly value</span>
+        </div>
       </div>
     </div>
     <div class="hero-right">
@@ -271,15 +277,15 @@
             Founding<br/>Member Spots
           </div>
         </div>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-num">$80</span>
-          <span class="hero-stat-label">per month</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-num">$300+</span>
-          <span class="hero-stat-label">in monthly value</span>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">$80</span>
+            <span class="hero-stat-label">per month</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">Up to $300</span>
+            <span class="hero-stat-label">in monthly value</span>
+          </div>
         </div>
       </div>
     </div>
@@ -332,7 +338,7 @@
           <ul class="benefit-items">
             <li>Priority access to event tickets</li>
             <li>Two members-only events each year</li>
-            <li>Two co-working drop-in days per week (included)</li>
+            <li>Co-working drop-in access (up to 2×/week, included)</li>
           </ul>
         </div>
         <div class="benefit-group accent">
@@ -373,20 +379,19 @@
         <div>
           <span class="section-label">Founding Member Experience</span>
           <div class="divider"></div>
-          <h2 class="section-title">You're not just joining.<br/><em>You're building this.</em></h2>
-          <p class="founding-body">This membership is being built in real time. Founding Members have a direct hand in shaping the culture, rituals, and future of The Couch Collective.</p>
-          <p class="founding-body">You'll have the option to be featured on The Sisters' Couch website as part of our Founding Collective — a permanent acknowledgment of the women who helped create this space.</p>
+      <h2 class="section-title">You're not just joining.<br/><em>You're building this.</em></h2>
+          <p class="founding-body">As a Founding Member, you'll have the option to be featured on The Sisters' Couch website as part of our Founding Collective — a permanent acknowledgment of the women who helped create this space.</p>
           <p class="founding-detail">Because of the trust and early commitment Founding Members bring, you'll receive an exclusive introductory rate that will not be offered to future members.</p>
           <div class="value-breakdown">
             <div class="value-title">What You'd Pay Without Membership</div>
             <div class="value-subtitle">Estimated monthly value at standard rates</div>
-            <div class="value-row"><span class="value-row-label">Co-working drop-in days (×8/mo)</span><span class="value-row-amount">$160</span></div>
-            <div class="value-row"><span class="value-row-label">Event access</span><span class="value-row-amount">$50</span></div>
-            <div class="value-row"><span class="value-row-label">Members-only experiences</span><span class="value-row-amount">$80</span></div>
-            <div class="value-row"><span class="value-row-label">Rental savings (20% off)</span><span class="value-row-amount">$90</span></div>
+            <div class="value-row"><span class="value-row-label">Co-working drop-in days (up to 2×/week)</span><span class="value-row-amount">Up to $200</span></div>
+            
+            <div class="value-row"><span class="value-row-label">Members-only events (2× per year, $240 value)</span><span class="value-row-amount">~$20/mo</span></div>
+            <div class="value-row"><span class="value-row-label">Space rental savings (20% off when you rent)</span><span class="value-row-amount">Up to $90</span></div>
             <div class="value-total-row">
               <span class="value-total-label">Estimated Total Value</span>
-              <span class="value-total-amount">$380+ / month</span>
+              <span class="value-total-amount">Up to $300 / month</span>
             </div>
           </div>
         </div>
@@ -396,16 +401,14 @@
             <p class="founding-price-label">per month · founding member rate</p>
             <ul class="founding-perks">
               <li>Exclusive introductory rate — not offered long term</li>
-              <li>Two co-working drop-in days per week included</li>
-              <li>Input into culture and community rituals</li>
+              <li>Co-working drop-in access — up to 2× per week, included</li>
               <li>Featured in the Founding Collective on TSC website</li>
               <li>First access as new offerings are added</li>
-              <li>Over $380 in estimated monthly value</li>
+              <li>Up to $300 in estimated monthly value</li>
             </ul>
           </div>
           <div class="pricing-ctas">
             <a href="#apply-form" class="btn-cream">Apply for Membership</a>
-            <a href="#apply-form" class="btn-outline-cream">Join the Waitlist</a>
           </div>
         </div>
       </div>
@@ -443,7 +446,7 @@
           <ul>
             <li>Two designated drop-in days per week</li>
             <li>Walk in — no reservation required</li>
-            <li>$20 / visit for non-members; included for members</li>
+            <li>$25 / visit for non-members; included for members</li>
           </ul>
         </div>
       </div>
@@ -472,23 +475,11 @@
       <div style="max-width:600px;margin:0 auto;border:2px dashed var(--taupe);border-radius:4px;padding:4rem;text-align:center;">
         <div style="font-family:var(--font-display);font-size:3rem;color:var(--taupe);margin-bottom:1rem;">✦</div>
         <div style="font-family:var(--font-display);font-size:1.5rem;font-weight:300;color:var(--green);margin-bottom:0.75rem;">Application Form</div>
-        <p style="font-size:0.85rem;font-weight:300;line-height:1.7;color:#6a7d72;">The membership application will live here. Replace this placeholder with the embedded Jotform link or form code. All "Apply Now" and "Join the Waitlist" buttons on this page anchor here.</p>
+        <p style="font-size:0.85rem;font-weight:300;line-height:1.7;color:#6a7d72;">The membership application will live here. Replace this placeholder with the embedded Jotform link or form code. All "Apply Now" buttons on this page anchor here.</p>
       </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section class="final-cta">
-    <div class="container">
-      <span class="section-label">Join The Couch Collective</span>
-      <h2 class="final-cta-title">Only 10 spots.<br/>This is one of them.</h2>
-      <p class="final-cta-body">A limited, intentional membership designed for women who are ready for consistent access to rest, community, and care.</p>
-      <div class="final-cta-actions">
-        <a href="#apply-form" class="btn-white">Apply for Membership</a>
-        <a href="#apply-form" class="btn-outline-white">Join the Waitlist</a>
-      </div>
-    </div>
-  </section>
 
   <!-- FOOTER -->
   <footer>
