@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-        body { overflow-x: hidden; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+            body { overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --green:   #2C4A3E;
@@ -48,7 +48,7 @@
 
     /* HERO */
     .hero {
-      min-height: 650px; background: var(--green);
+      min-height: 100vh; background: var(--green);
       display: grid; grid-template-columns: 1fr 1fr;
       position: relative; overflow: hidden;
     }
@@ -220,10 +220,10 @@
 
     /* RESPONSIVE */
     @media (max-width: 960px) {
-      nav { padding: 1rem 1.5rem; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { min-height: 360px; }
-      .hero-left { padding: 8rem 2rem 3rem; }
+      nav { padding: 1rem 1.25rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 6rem 1.5rem 3rem; }
+      .hero-right { min-height: 280px; }
       .hero-stats { display: none; }
       .hero-stats-mobile { display: flex; }
       .who-inner, .founding-inner { grid-template-columns: 1fr; gap: 3rem; }
